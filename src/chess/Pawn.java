@@ -46,9 +46,12 @@ public class Pawn extends ChessPiece{
 
 				// returns true if the player is trying to move forward
 				// and there isn't a player infront of it
-				if(board[move.toRow][move.toColumn]==
-						board[move.fromRow-1][move.fromColumn]) {
-					if(board[move.toRow][move.toColumn].player()!=Player.BLACK) {
+				if(move.toRow==move.fromRow-1 && move.toColumn
+						==move.fromColumn) {
+					if(board[move.toRow][move.toColumn]==null){
+						return true;
+					}
+					else if(board[move.toRow][move.toColumn].player()!=Player.BLACK) {
 						return true;
 					}
 					else {
@@ -59,15 +62,21 @@ public class Pawn extends ChessPiece{
 				// checks to see if pawn is at starting location
 				else if(move.fromRow == 6){
 					// checks to see if possible to move 2 spaces
-					if(board[move.toRow][move.toColumn]==
-							board[move.fromRow-2][move.fromColumn]) {
+					if(move.toRow==move.fromRow-2 && move.toColumn==
+							move.fromColumn) {
 						// checks to see if space one ahead is clear
-						if((board[move.fromRow-1][move.fromColumn].player()
+						if(board[move.toRow][move.toColumn]==null){
+							return true;
+						}
+						else if((board[move.fromRow-1][move.fromColumn].player()
 								!=Player.BLACK) || (board[move.fromRow-1]
 										[move.fromColumn].player()
 										!=Player.WHITE)) {
 							// checks to see if space two ahead is clear
-							if(board[move.toRow-2][move.toColumn].player()
+							if(board[move.toRow][move.toColumn]==null){
+								return true;
+							}
+							else if(board[move.toRow-2][move.toColumn].player()
 									!=player().BLACK){
 								return true;
 							}
@@ -85,22 +94,27 @@ public class Pawn extends ChessPiece{
 				}
 				
 
-				//returns true if the player is trying to move diagonally
-				//and there is a player of the opposite team there
-				else if (board[move.toRow][move.toColumn]==
-						board[move.fromRow-1][move.fromColumn+1]) {
-					if(board[move.toRow][move.toColumn].player()==Player.BLACK) {
+				// returns true if the player is trying to move diagonally
+				// right and there is a player of the opposite team there
+				else if (move.toRow==move.fromRow-1 && move.toColumn
+						==move.fromColumn+1) {
+					if(board[move.toRow][move.toColumn]==null){
+						return false;
+					}
+					else if(board[move.toRow][move.toColumn].player()==Player.BLACK) {
 						return true;
 					}
 					else {
 						return false;
 					}
 				}
-				//returns true if the player is trying to move diagonally
-				//and there is a player of the opposite team there
-				else if(board[move.toRow][move.toColumn]==
-						board[move.fromRow-1][move.fromColumn-1]) {
-					if(board[move.toRow][move.toColumn].player()==Player.BLACK) {
+				// returns true if the player is trying to move diagonally
+				// left and there is a player of the opposite team there
+				else if(move.toRow==move.fromRow-1 && move.toColumn==move.fromColumn-1) {
+					if(board[move.toRow][move.toColumn]==null){
+						return false;
+					}
+					else if(board[move.toRow][move.toColumn].player()==Player.BLACK) {
 						return true;
 					}
 					else {
@@ -123,9 +137,12 @@ public class Pawn extends ChessPiece{
 			else if(this.player()==Player.BLACK) {
 				//returns true if the player is trying to move forward
 				//and there isn't a player infront of it
-				if(board[move.toRow][move.toColumn]==
-						board[move.fromRow+1][move.fromColumn]) {
-					if(board[move.toRow][move.toColumn].player()!=Player.WHITE) {
+				if(move.toRow==move.fromRow+1 && move.toColumn
+						==move.fromColumn) {
+					if(board[move.toRow][move.toColumn]==null){
+						return true;
+					}
+					else if(board[move.toRow][move.toColumn].player()!=Player.WHITE) {
 						return true;
 					}
 					else {
@@ -137,15 +154,21 @@ public class Pawn extends ChessPiece{
 				// checks to see if pawn is at starting location
 				else if(move.fromRow == 1){
 					// checks to see if possible to move 2 spaces
-					if(board[move.toRow][move.toColumn]==
-							board[move.fromRow+2][move.fromColumn]) {
+					if(move.toRow==move.fromRow+2 && move.toColumn==
+							move.fromColumn) {
 						// checks to see if space one ahead is clear
-						if((board[move.fromRow+1][move.fromColumn].player()
+						if(board[move.toRow][move.toColumn]==null){
+							return true;
+						}
+						else if((board[move.fromRow+1][move.fromColumn].player()
 								!=Player.BLACK) || (board[move.fromRow+1]
 										[move.fromColumn].player()
 										!=Player.WHITE)) {
 							// checks to see if space two ahead is clear
-							if(board[move.toRow+2][move.toColumn].player()
+							if(board[move.toRow][move.toColumn]==null){
+								return true;
+							}
+							else if(board[move.toRow+2][move.toColumn].player()
 									!=player().WHITE){
 								return true;
 							}
@@ -164,9 +187,12 @@ public class Pawn extends ChessPiece{
 				
 				//returns true if the player is trying to move diagonally
 				//and there is a player of the opposite team there
-				else if (board[move.toRow][move.toColumn]==
-						board[move.fromRow+1][move.fromColumn+1]) {
-					if(board[move.toRow][move.toColumn].player()==Player.WHITE) {
+				else if (move.toRow==move.fromRow+1 && move.toColumn==
+						move.fromColumn+1) {
+					if(board[move.toRow][move.toColumn]==null){
+						return false;
+					}
+					else if(board[move.toRow][move.toColumn].player()==Player.WHITE) {
 						return true;
 					}
 					else {
@@ -175,9 +201,12 @@ public class Pawn extends ChessPiece{
 				}
 				//returns true if the player is trying to move diagonally
 				//and there is a player of the opposite team there
-				else if(board[move.toRow][move.toColumn]==
-						board[move.fromRow+1][move.fromColumn-1]) {
-					if(board[move.toRow][move.toColumn].player()==Player.WHITE) {
+				else if(move.toRow==move.fromRow+1 && move.toColumn==
+						move.fromColumn-1) {
+					if(board[move.toRow][move.toColumn]==null){
+						return false;
+					}
+					else if(board[move.toRow][move.toColumn].player()==Player.WHITE) {
 						return true;
 					}
 					else {
